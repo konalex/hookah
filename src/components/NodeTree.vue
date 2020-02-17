@@ -61,6 +61,7 @@ export default class NodeTree extends Vue {
   change() {
     /* Break if there is no checkbox */
     if(!this.$refs.status) return false
+    let input: any = this.$refs.status
     /* Break if there are no children */
     if(!this.getChildrenOfNode(this.node.id).length) return false
     /* If there are selected children */
@@ -68,20 +69,20 @@ export default class NodeTree extends Vue {
       /* The number of selected children is equal to the number of children */
       if(this.getChildrenOfNode(this.node.id).length === this.getCheckedChildrenOfNode(this.node.id).length) {
         /* Remove the indeterminate from input and add checked to node */
-        this.$refs.status.indeterminate = false
+        input.indeterminate = false
         this.node.checked = true
       }
       /* If the number of selected children is not equal to the total number of children */
       else {
         /* Set the indeterminate to input and remove checked from node */
-        this.$refs.status.indeterminate = true
+        input.indeterminate = true
         this.node.checked = false
       }
     }
     /* If there are no selected children */
     else {
       /* Remove the indeterminate from input and remove checked from node */
-      if(this.$refs.status) this.$refs.status.indeterminate = false
+      input.indeterminate = false
       this.node.checked = false
     }
   }
